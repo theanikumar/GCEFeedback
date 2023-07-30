@@ -111,9 +111,11 @@ window.addEventListener("load", function() {
 });
 
 // Function to add smooth scrolling to the form's next button
-document.getElementById("submit").addEventListener("submit", function(event) {
+document.getElementById("submit").addEventListener("click", function(event) {
   event.preventDefault();
+	event.disabled = true;
   validateAndProceed();
+	event.disabled = false;
 });
 
 // Function to populate the subject options based on the selected semester and branch
@@ -222,7 +224,7 @@ function validateAndProceed() {
     .then((docRef) => {
       console.log("Document written with ID: ", docRef.id);
       // Redirect to the new HTML page after data is saved
-      window.location.href = "new_page.html"; // Replace "new_page.html" with your desired page name
+      window.location.href = "thankyou.html"; // Replace "new_page.html" with your desired page name
     })
     .catch((error) => {
       console.error("Error adding document: ", error);
