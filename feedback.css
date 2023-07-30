@@ -73,3 +73,10 @@ button:hover {
 	text-align: center;
 	color: #999;
 }
+
+
+@media screen and (max-width:500px) {
+	#feedbackForm {
+		width: auto;
+	}
+}

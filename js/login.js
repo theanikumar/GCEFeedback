@@ -41,7 +41,8 @@ submitBtn.addEventListener("click", async function(e){
 
 		if(result.info) {
 			alert("Login successful!");
-			// sessionStorage.setItem("GCEKFeedbackLoginID", result.id);
+			result.expireTime = Date.now() + 60*60*1000;
+			sessionStorage.setItem("GCEKFeedbackLoginID", JSON.stringify(result));
 			window.location = "/feedback.html";
 		} else {
 			alert("User Name or password incorrect!");

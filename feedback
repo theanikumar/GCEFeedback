@@ -69,7 +69,7 @@
 
 
 				<div id="questions"></div>
-        <button type="button" id="submit" onclick="validateAndProceed()">NEXT</button>
+        <button type="button" onclick="validateAndProceed()">NEXT</button>
       </form>
     </div>
     <div id="teachersSection">
@@ -81,7 +81,7 @@
     Designed & Developed by Deviwares Pvt. Ltd.
   </footer>
 
-  <script src="js/feedback.js" type="module"></script>
+  <script src="js/feedback.js"></script>
   <script src="js/feedbackQuestions.js"></script>
 </body>
 

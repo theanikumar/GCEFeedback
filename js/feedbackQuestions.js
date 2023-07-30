@@ -59,10 +59,10 @@ function addQuestions(id) {
 		for(const [index, question] of questions.entries()) {
 			// questionsHTML = `<div class="question">Q${index + 1}. ${question}</div><div class="flex-row ${optionsClass}">`;
 			questionsHTML +=
-			`<div class="question-container"><div class="question">Q${index + 1}. ${question}</div><div class="flex-row options radio-group">`;
+			`<div class="question-container"><div class="question">Q${index + 1}. ${question}</div><div class="dynamic-flex options">`;
 			for(const [ratingIndex, ratingValue] of ratings.entries()) {
 				questionsHTML += 
-					`<input type="radio" id="q${index}${ratingIndex}" name="q${index + 1}" value="${ratingIndex + 1}" required /><label for="q${index}${ratingIndex}">${ratingValue}</label>`;
+					`<div class="options flex-row"><input type="radio" id="q${index}${ratingIndex}" name="q${index + 1}" value="${ratingIndex + 1}" required /><label for="q${index}${ratingIndex}">${ratingValue}</label></div>`;
 			}
 			questionsHTML += `</div></div>`;
 		}
