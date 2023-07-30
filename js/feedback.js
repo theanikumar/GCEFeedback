@@ -111,7 +111,7 @@ window.addEventListener("load", function() {
 });
 
 // Function to add smooth scrolling to the form's next button
-document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+document.getElementById("submit").addEventListener("submit", function(event) {
   event.preventDefault();
   validateAndProceed();
 });
