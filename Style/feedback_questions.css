@@ -13,6 +13,8 @@
 
 .question-container {
 	color: var(--font-color);
+	margin-top: 1.25rem;
+	margin-bottom: .75rem;
 }
 
 .question-container:has(input[type="radio"]:checked + label) {
@@ -21,8 +23,6 @@
 
 .question {
 	font-weight: bold;
-	margin-top: 0.5rem;
-	margin-bottom: 0.25rem;
 }
 
 .flex-row {
