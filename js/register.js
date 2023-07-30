@@ -100,7 +100,7 @@ submitBtn.addEventListener("click", async function(e){
 		}
 		if (result.message) {
 			alert("New user created!");
-			window.location = "/login.html";
+			window.location = "/index.html";
 		} else
 			alert("User already exists!");
 	}

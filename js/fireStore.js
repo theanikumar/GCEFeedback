@@ -8,6 +8,8 @@ import {
 	query,
 	where,
 	limit,
+	doc,
+	getDoc,
 	getDocs,
 } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -32,6 +34,33 @@ const firestore = getFirestore(app);
 
 // Getting users Collections
 const users = collection(firestore, "users");
+
+async function checkUserID(userID) {
+	try {
+		// note we cannot refer to this since this only uses ID
+		// how would the database know it is from which collection
+		// we instead use ID with `users` collection, create a
+		// reference and then try to get document
+		//	const userSnapshot = await getDoc(userID);
+		const userRef = doc(firestore, "users", userID);
+		const userSnapshot = await getDoc(userRef);
+
+		if(userSnapshot.exists())
+			return ({
+				message: true,
+				info: true,
+			});
+		return ({
+			message: true,
+			info: false,
+		});
+	} catch (error) {
+		return ({
+			message: false,
+			error,
+		})
+	}
+}
 
 async function checkUser(user) {
 	// return message `true` means data was fetched and either correct
@@ -60,7 +89,9 @@ async function checkUser(user) {
 					info: false,
 				});
 		} else {
-			return null;
+			return ({
+				message: false,
+			});
 		}
 	} catch (error) {
 		console.error("Error checking the user:", error);
@@ -116,6 +147,7 @@ async function addNewUser(userData) {
 }
 
 export {
+	checkUserID,
 	checkUser,
 	addNewUser,
 };

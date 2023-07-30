@@ -25,6 +25,10 @@
 	font-weight: bold;
 }
 
+.dynamic-flex {
+	display: flex;
+}
+
 .flex-row {
 	display: flex;
 }
@@ -94,5 +98,14 @@ input[type="radio"]:checked + label {
 	}
 	100% {
 		color: var(--radio-checked);
+	}
+}
+
+@media screen and (max-width:500px) {
+	.dynamic-flex {
+		flex-direction: column;
+	}
+	.options {
+		justify-content: flex-start;
 	}
 }
