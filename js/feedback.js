@@ -241,7 +241,6 @@ function feedbackObjIsValid(feedbackObj) {
 import { checkUserID } from "./fireStore.js";
 async function validateUser() {
   const res = JSON.parse(sessionStorage.getItem("GCEKFeedbackLoginID"));
-  console.log(res)
 
   if(res == null) {
     alert("Login first!");
@@ -249,7 +248,6 @@ async function validateUser() {
     return;
   }
   const response = await checkUserID(res.id);
-  console.log(response);
 
   if(!response.message) {
     console.log("Internal Server Error!");
@@ -265,5 +263,4 @@ async function validateUser() {
   }
 }
 
-//validateUser();
-console.log(await checkUserID('0WRLw7AQ0DC43HZb3ECe'));
+validateUser();
