@@ -185,3 +185,15 @@ form .page .btns button.next{
 .login-btn a{
   color: #000;
 }
+
+.credit-section {
+  text-align: center;
+  color: #000;
+  margin-top: 30px;
+}
+
+.credit-section a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}

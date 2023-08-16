@@ -38,10 +38,19 @@
         <input type="text" id="fullName" required>
 
         <div class="label" for="registrationNumber">Registration Number:</div>
-        <input type="text" id="registrationNumber" required>
+        <input type="text" id="registrationNumber" pattern="[\d]{10}" required>
 
         <div class="label" for="semester">Semester:</div>
-        <input type="number" id="semester" required>
+        <select id="semester" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
 
         <div class="label" for="branch">Branch:</div>
         <select id="branch" required>
@@ -49,7 +58,7 @@
           <option value="Civil Enginnering">Civil Enginnering</option>
           <option value="Computer Science and Engineering">Computer  Science and Engineering</option>
           <option value="Electrical Engineering">Electrical Engineering</option>
-          <option value="Meachinical Engineering">Meachinical Engineering</option>
+          <option value="Mechanical Engineering">Mechanical Engineering</option>
           <option value="Metallurgical & Materials Engineering">Metallurgical & Materials Engineering</option>
           <option value="Mineral Engineering">Mineral Engineering</option>
           <option value="Mining Engineering">Mining Engineering</option>
@@ -69,7 +78,7 @@
 
 
 				<div id="questions"></div>
-        <button type="button" id="submit" onclick="validateAndProceed()">NEXT</button>
+        <button type="button" id="submit">NEXT</button>
       </form>
     </div>
     <div id="teachersSection">
@@ -78,7 +87,7 @@
   </div>
 
   <footer class="footer">
-    Designed & Developed by Deviwares Pvt. Ltd.
+    Powered by Deviwares in association with GCE Keonjhar.
   </footer>
 
   <script src="js/feedback.js" type="module"></script>

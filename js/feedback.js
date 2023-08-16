@@ -1,3 +1,5 @@
+import { checkUserID } from "./fireStore.js";
+
 // Define the subjects data array with subjects for each semester and branch
 const subjectsData = {
   "1": {
@@ -34,7 +36,7 @@ const subjectsData = {
     "Civil Engineering": ["Subject 1A", "Subject 2A", "Subject 3A"],
     "Computer Science and Engineering": ["Computer Organisation & Architecture", "Design & Analysis of Algorithm", "Data Communication", "Discrete Mathematics", "Engineering Economics", "Analog Electronics Circuit", "Python Programming Lab", "Seminar/Group Decussion"],
     "Electrical Engineering": ["Subject 1C", "Subject 2C", "Subject 3C" ],
-    "Mechanical Engineering": ["Subject ME1_1", "Subject ME1_2", "Suject ME 1_3", "Subject ME 1_4"],
+    "Mechanical Engineering": ["Engineering Thermodynamics", "Kinematics & Dynamics of Machines", "Internal Combustion Engines and Gas Turbines", "Introduction to Physical Metallurgy and Engineering Materials","Organisational Behaviour","Data Structure"],
     "Metallurgical & Materials Engineering": ["Subject MME1", "Subject MME2", "Subject MME3"],
     "Mineral Engineering": ["Subject ME1", "Subject ME2", "Subject ME3"],
     "Mining Engineering": ["Subject Min 1", "Subject Min 2", "Ssubject Min 3"]
@@ -54,7 +56,7 @@ const subjectsData = {
     "Civil Engineering": ["Subject 1A", "Subject 2A", "Subject 3A"],
     "Computer Science and Engineering": ["Software Engineering", "Compiler Design", "Wireless Sesor Network", "Analog and Digital Communication", "Optimization in Engineering", "Future Ready Contributor Develop Model Lab"],
     "Electrical Engineering": ["Subject 1C", "Subject 2C", "Subject 3C" ],
-    "Mechanical Engineering": ["Subject ME1_1", "Subject ME1_2", "Suject ME 1_3", "Subject ME 1_4"],
+    "Mechanical Engineering": ["Machining Science and Technology", "Design of Machine Elements", "Compressible Flow and Gas Dynamics", "Artificial Intelligence and Machine Learning", "Optimization in Engineering"],
     "Metallurgical & Materials Engineering": ["Subject MME1", "Subject MME2", "Subject MME3"],
     "Mineral Engineering": ["Subject ME1", "Subject ME2", "Subject ME3"],
     "Mining Engineering": ["Subject Min 1", "Subject Min 2", "Ssubject Min 3"]
@@ -94,6 +96,14 @@ const teachersData = {
   "Analog Electronics Circuit": ["MADHUMITA PAL"], 
   "Python Programming Lab": ["MUKESH BATHRE", "SOUMYA RANJAN MOHAPTRA"], 
   "Seminar/Group Decussion": ["LIZA RANI BEHERA"],
+
+  //Subject Feculty list for 4th sem Mechnical...
+  "Engineering Thermodynamics":["Dr.Sudhansu Mishra"], 
+  "Kinematics & Dynamics of Machines":["Mr. Sudhanshu Mehera"], 
+  "Internal Combustion Engines and Gas Turbines":["Dr. Partha Sarathi Mishra"], 
+  "Introduction to Physical Metallurgy and Engineering Materials":["Dr. Vikas Kumar"],
+  "Organisational Behaviour":["Dr. Santosh Kumar Panda"],
+  "Data Structure":["Dr. Omkar Pattnaik"],
   
 
   //Subjexts & Feculty list fort 6th semester CSE
@@ -102,7 +112,14 @@ const teachersData = {
   "Wireless Sesor Network": ["MUKESH BATHRE"],
   "Analog and Digital Communication": ["DEBASISH MOHANTA"],
   "Optimization in Engineering": ["SEPHALI MOHANTY"],
-  "Future Ready Contributor Develop Model Lab": ["OMKAR PATTNAIK"]
+  "Future Ready Contributor Develop Model Lab": ["OMKAR PATTNAIK"],
+
+  //Subject & Feculty list for 6th semester Mechanical
+  "Machining Science and Technology": ["Dayanidhi Jena"], 
+  "Design of Machine Elements":["Dr. Sudhanshu Mishra"], 
+  "Compressible Flow and Gas Dynamics":["Dr. Partha Sarathi Mishra"], 
+  "Artificial Intelligence and Machine Learning":["Sashmita Pani"], 
+  "Optimization in Engineering":["Anjana Mohanta"],
 };
 
 // Function to scroll to the form's top when the page loads
@@ -113,9 +130,9 @@ window.addEventListener("load", function() {
 // Function to add smooth scrolling to the form's next button
 document.getElementById("submit").addEventListener("click", function(event) {
   event.preventDefault();
-	event.disabled = true;
-  validateAndProceed();
-	event.disabled = false;
+  event.disabled = true;
+  validateFormAndProceed();
+  event.disabled = false;
 });
 
 // Function to populate the subject options based on the selected semester and branch
@@ -184,7 +201,7 @@ document.getElementById("branch").addEventListener("change", populateSubjectOpti
 document.getElementById("subject").addEventListener("change", populateTeacherOptions);
 
 // Function to validate the form and save data to Firebase
-function validateAndProceed() {
+function validateFormAndProceed() {
   var fullName = document.getElementById("fullName").value;
   var registrationNumber = document.getElementById("registrationNumber").value;
   var semester = parseInt(document.getElementById("semester").value);
@@ -207,7 +224,6 @@ function validateAndProceed() {
 
 
   // Save data to Firebase or perform any other actions you need
-  // Save data to Firebase or perform any other actions you need
   firebase
     .firestore()
     .collection("feedback")
@@ -218,13 +234,13 @@ function validateAndProceed() {
       branch: branch,
       subject: subject,
       teacher: teacher,
-      date: currentDate, // Add the current date to the data
-      feedback: feedbackObj, // Add the feedback ratings
+      date: currentDate,
+      feedback: feedbackObj,
     })
     .then((docRef) => {
       console.log("Document written with ID: ", docRef.id);
       // Redirect to the new HTML page after data is saved
-      window.location.href = "thankyou.html"; // Replace "new_page.html" with your desired page name
+      window.location.href = "thankyou.html";
     })
     .catch((error) => {
       console.error("Error adding document: ", error);
@@ -240,7 +256,6 @@ function feedbackObjIsValid(feedbackObj) {
   return true;
 }
 
-import { checkUserID } from "./fireStore.js";
 async function validateUser() {
   const res = JSON.parse(sessionStorage.getItem("GCEKFeedbackLoginID"));
 

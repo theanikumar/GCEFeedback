@@ -70,8 +70,8 @@ submitBtn.addEventListener("click", async function(e){
 
 	if(!form.checkValidity()) {
 		alert("Enter the required details!");
-		return;
 		submitBtn.disabled = false;
+		return;
 	} else if(password1.value != password2.value) {
 		alert("Both passwords are not same! Rectify it.");
 		submitBtn.disabled = false;
@@ -93,12 +93,12 @@ submitBtn.addEventListener("click", async function(e){
 	};
 
 	function handleAddUser(result) {
-		if (!result.info) {
+		if (!result.message) {
 			alert("Unable to create user!")
 			console.log(result.error);
 			return;
 		}
-		if (result.message) {
+		if (result.info) {
 			alert("New user created!");
 			window.location = "/index.html";
 		} else
@@ -108,13 +108,6 @@ submitBtn.addEventListener("click", async function(e){
 	await addNewUser(user)
 		.then((result) => handleAddUser(result))
 		.catch((error) => console.error(error));
-/*
- *setTimeout(function(){
- *		alert("Your Form Successfully Signed up");
- *	},
- *	1000);
- *}
- */
 });
 prevBtnSec.addEventListener("click", function(event){
 	event.preventDefault();
